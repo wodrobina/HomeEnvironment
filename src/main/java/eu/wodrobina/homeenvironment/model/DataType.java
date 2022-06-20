@@ -1,4 +1,4 @@
-package com.example.homeenvironment.model;
+package eu.wodrobina.homeenvironment.model;
 
 public enum DataType {
     TEMPERATURE,
