@@ -1,10 +1,9 @@
-package eu.wodrobina.homeenvironment.model;
+package eu.wodrobina.homeenvironment.sensor;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import java.util.HashSet;
@@ -14,7 +13,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-public class Sensor {
+class Sensor {
 
     @Id
     @NaturalId

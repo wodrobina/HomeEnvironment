@@ -1,12 +1,13 @@
-package eu.wodrobina.homeenvironment.model;
+package eu.wodrobina.homeenvironment.sensor;
 
+import eu.wodrobina.homeenvironment.common.DataType;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
 @Embeddable
-public class SensorData {
+class SensorData {
 
     @Enumerated(EnumType.STRING)
     private DataType dataType;

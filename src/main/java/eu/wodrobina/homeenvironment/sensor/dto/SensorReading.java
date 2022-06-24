@@ -1,7 +1,7 @@
-package eu.wodrobina.homeenvironment.dto;
+package eu.wodrobina.homeenvironment.sensor.dto;
 
+import eu.wodrobina.homeenvironment.common.DataType;
 import java.time.LocalDateTime;
-import eu.wodrobina.homeenvironment.model.DataType;
 
 public record SensorReading(String sensorName,
                             DataType dataType,

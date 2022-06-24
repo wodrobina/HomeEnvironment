@@ -1,30 +1,30 @@
-package eu.wodrobina.homeenvironment.resource;
+package eu.wodrobina.homeenvironment.sensor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import eu.wodrobina.homeenvironment.dto.SensorReading;
-import eu.wodrobina.homeenvironment.model.DataType;
-import eu.wodrobina.homeenvironment.model.Sensor;
-import eu.wodrobina.homeenvironment.repostitory.SensorRepository;
+import eu.wodrobina.homeenvironment.common.DataType;
+import eu.wodrobina.homeenvironment.sensor.dto.SensorReading;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SensorResourceIntegrationTest {
-
     public static final String SENSOR_NAME = "TestSensor";
     @Autowired
     private SensorRepository sensorRepository;
 
     @Test
-    void name() {
+    @DisplayName("shg")
+    void tes01() {
         Sensor testSensor = new Sensor(SENSOR_NAME);
-        Sensor savedSensor = sensorRepository.save(testSensor);
+        sensorRepository.save(testSensor);
 
-        SensorResource sensorResource = new SensorResource(sensorRepository, null);
+
+        SensorResource sensorResource = new SensorResource(new SensorService(sensorRepository));
         SensorReading sensorReading = new SensorReading(SENSOR_NAME, DataType.TEMPERATURE, "12.33", LocalDateTime.MIN);
 
         sensorResource.registerSensorReading(sensorReading);
