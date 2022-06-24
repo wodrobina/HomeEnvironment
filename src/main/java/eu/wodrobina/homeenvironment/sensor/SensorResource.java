@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +20,15 @@ class SensorResource {
         this.sensorService = sensorService;
     }
 
-    @PostMapping
-    public ResponseEntity<String> registerSensor(SensorName sensorName) {
+    @PostMapping("register/{sensorName}")
+    public ResponseEntity<String> registerSensor(@PathVariable String sensorName) {
         Optional<SensorOperationFailure> operationStatus = sensorService.register(sensorName);
         return operationStatus
                 .map(SensorResource::sensorExistError)
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.CREATED));
     }
 
-    @PostMapping
+    @PostMapping("register")
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> registerSensorReading(SensorReading sensorReading) {

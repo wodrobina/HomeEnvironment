@@ -1,6 +1,5 @@
 package eu.wodrobina.homeenvironment.sensor;
 
-import eu.wodrobina.homeenvironment.sensor.dto.SensorName;
 import eu.wodrobina.homeenvironment.sensor.dto.SensorReading;
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -14,8 +13,8 @@ class SensorService {
     }
 
     @Transactional
-    Optional<SensorOperationFailure> register(SensorName sensorName) {
-        Optional<Sensor> existingSensor = sensorRepository.findById(sensorName.value());
+    Optional<SensorOperationFailure> register(String sensorName) {
+        Optional<Sensor> existingSensor = sensorRepository.findById(sensorName);
         if (existingSensor.isPresent()) {
             return Optional.of(new SensorOperationFailure("Sensor exist"));
         }
@@ -34,8 +33,8 @@ class SensorService {
         return Optional.of(new SensorOperationFailure("Sensor exist"));
     }
 
-    private Sensor from(SensorName sensorName) {
-        return sensorRepository.save(new Sensor(sensorName.value()));
+    private Sensor from(String sensorName) {
+        return sensorRepository.save(new Sensor(sensorName));
     }
 
     private void addReadingDataAndSave(SensorReading sensorReading, Sensor sensor) {
