@@ -11,8 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootTest
+@Profile("integration-test")
 class SensorResourceIntegrationTest {
     public static final String SENSOR_NAME = "TestSensor";
     public static final Double RECORDED_DATA = 12.33d;
