@@ -1,6 +1,10 @@
 package eu.wodrobina.homeenvironment.sensor;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
 
-interface SensorRepository extends CrudRepository<Sensor, String> {
+interface SensorRepository {
+
+    Sensor save(Sensor sensor);
+
+    Optional<Sensor> findById(String s);
 }
