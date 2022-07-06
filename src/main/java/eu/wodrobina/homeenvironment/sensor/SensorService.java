@@ -30,7 +30,7 @@ class SensorService {
             return Optional.empty();
         }
 
-        return Optional.of(new SensorOperationFailure("Sensor exist"));
+        return Optional.of(new SensorOperationFailure("Sensor doesn't exist"));
     }
 
     private Sensor from(String sensorName) {
