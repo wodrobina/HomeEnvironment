@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Embeddable
 class SensorData {
@@ -45,5 +46,18 @@ class SensorData {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SensorData that = (SensorData) o;
+        return dataType == that.dataType && recordedValue.equals(that.recordedValue) && timestamp.equals(that.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dataType, recordedValue, timestamp);
     }
 }
