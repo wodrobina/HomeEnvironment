@@ -6,8 +6,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class SensorConfiguration {
 
+    private final SensorRepository sensorRepository;
+
+    public SensorConfiguration(SensorRepository sensorRepository) {
+        this.sensorRepository = sensorRepository;
+    }
+
     @Bean
-    SensorService sensorService(SensorRepository sensorRepository){
+    SensorService sensorService(){
         return new SensorService(sensorRepository);
     }
 

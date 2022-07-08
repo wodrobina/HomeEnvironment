@@ -20,7 +20,8 @@ class SensorServiceTest {
     @BeforeEach
     void setUp() {
         sensorRepository = new InMemoryTestSensorRepository();
-        sensorService = new SensorService(sensorRepository);
+        SensorConfiguration sensorConfiguration = new SensorConfiguration(sensorRepository);
+        sensorService = sensorConfiguration.sensorService();
     }
 
     @Test
