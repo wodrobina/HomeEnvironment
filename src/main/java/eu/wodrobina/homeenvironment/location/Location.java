@@ -47,4 +47,21 @@ class Location {
     public Set<SensorName> listSensorNames() {
         return Set.copyOf(this.sensorNames);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Location)) {
+            return false;
+        }
+        return name != null && name.equals(((Location) o).name);
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
+    }
 }
