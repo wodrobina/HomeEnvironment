@@ -32,7 +32,7 @@ class LocationService {
     void linkSensorToLocation(LocationName locationName, SensorNameDto sensorNameDto){
         Optional<Location> locationById = locationRepository.findById(locationName.value());
         Location location = locationById
-                .orElseThrow(() -> new RuntimeException("Location doesn't exist. It's impossible to link any soensor"));
+                .orElseThrow(() -> new RuntimeException("Location doesn't exist. It's impossible to link any sensor"));
 
         location.attachSensorToLocation(SensorName.namedAs(sensorNameDto.value()));
     }
