@@ -34,4 +34,8 @@ class SensorName {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    static SensorName namedAs(String name){
+        return new SensorName(name);
+    }
 }

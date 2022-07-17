@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import java.util.HashSet;
 import java.util.Set;
+
+import eu.wodrobina.homeenvironment.location.dto.LocationName;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
@@ -46,5 +48,9 @@ class Location {
 
     public Set<SensorName> listSensorNames() {
         return Set.copyOf(this.sensorNames);
+    }
+
+    static Location from(LocationName locationName){
+        return new Location(locationName.value());
     }
 }

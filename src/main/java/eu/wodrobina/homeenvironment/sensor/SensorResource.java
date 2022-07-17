@@ -1,6 +1,5 @@
 package eu.wodrobina.homeenvironment.sensor;
 
-import eu.wodrobina.homeenvironment.sensor.dto.SensorName;
 import eu.wodrobina.homeenvironment.sensor.dto.SensorReading;
 import javax.transaction.Transactional;
 import java.util.Optional;
