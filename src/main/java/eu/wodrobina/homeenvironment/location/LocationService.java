@@ -16,7 +16,7 @@ class LocationService {
     void createLocation(LocationName locationName) {
         Optional<Location> locationById = locationRepository.findById(locationName.value());
         if (locationById.isPresent()) {
-            throw new RuntimeException("Location exist. It's forbidden o add location with same name");
+            throw LocationException.locationWithSameNameExist();
         }
         locationRepository.save(Location.from(locationName));
     }
@@ -24,20 +24,27 @@ class LocationService {
     void removeLocation(LocationName locationName) {
         Optional<Location> locationById = locationRepository.findById(locationName.value());
         if (locationById.isPresent()) {
-            locationRepository.remove(Location.from(locationName));
+            locationRepository.delete(Location.from(locationName));
+            return;
         }
-        throw new RuntimeException("Location doesn't exist so it can't be removed");
+        throw LocationException.locationDoesNotExist();
     }
 
-    void linkSensorToLocation(LocationName locationName, SensorNameDto sensorNameDto){
+    void linkSensorToLocation(LocationName locationName, SensorNameDto sensorNameDto) {
         Optional<Location> locationById = locationRepository.findById(locationName.value());
         Location location = locationById
-                .orElseThrow(() -> new RuntimeException("Location doesn't exist. It's impossible to link any sensor"));
+                .orElseThrow(LocationException::linkSensorToNonExistingLocation);
 
         location.attachSensorToLocation(SensorName.namedAs(sensorNameDto.value()));
     }
 
+    void removeSensorFromLocation(LocationName locationName, SensorNameDto sensorNameDto) {
+        Optional<Location> locationById = locationRepository.findById(locationName.value());
+        Location location = locationById
+                .orElseThrow(LocationException::removeSensorFromLocationThaNotExist);
 
+        location.detachSensorFromLocation(SensorName.namedAs(sensorNameDto.value()));
+    }
 }
 
 
